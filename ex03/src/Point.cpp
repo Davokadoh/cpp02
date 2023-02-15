@@ -6,7 +6,7 @@
 /*   By: jleroux <jleroux@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 15:27:15 by jleroux           #+#    #+#             */
-/*   Updated: 2023/02/06 17:32:25 by jleroux          ###   ########.fr       */
+/*   Updated: 2023/02/15 14:34:54 by jleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 #include <iostream>
 
 // Default constructor
-Point::Point(void) : _x(0), _y(0) {}
+Point::Point(const float x, const float y) : _x(x), _y(y) {}
 
 // Copy constructor
-Point::Point(const Point &src) : _x(src._x), _y(src._y) {}
-
-// Float constructor
-Point::Point(const float x, const float y) : _x(x), _y(y) {}
+Point::Point(const Point &src) : _x(src.getX()), _y(src.getY()) {}
 
 // Destructor
 Point::~Point(void) {}
@@ -29,10 +26,7 @@ Point::~Point(void) {}
 Point	&Point::operator=(const Point &rhs)
 {
 	if (this != &rhs)
-	{
-		this->_x = rhs.getX();
-		this->_y = rhs.getY();
-	}
+		std::cout << "Trying to assign const values" << std::endl;
 	return *this;
 }
 
@@ -42,20 +36,8 @@ Fixed	Point::getX(void) const
 	return this->_x;
 }
 
-// X Setter
-void	Point::setX(const float x)
-{
-	this->_x = x;
-}
-
 // Y Getter
 Fixed	Point::getY(void) const
 {
 	return this->_y;
-}
-
-// Y Setter
-void	Point::setY(const float y)
-{
-	this->_y = y;
 }

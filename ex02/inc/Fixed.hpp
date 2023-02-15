@@ -6,14 +6,17 @@
 /*   By: jleroux <jleroux@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 15:22:06 by jleroux           #+#    #+#             */
-/*   Updated: 2023/01/17 17:01:01 by jleroux          ###   ########.fr       */
+/*   Updated: 2023/02/15 14:23:59 by jleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#include <string>
+#ifndef FIXED_HPP
+#define FIXED_HPP
 
-class Fixed {
+# include <string>
+
+class	Fixed
+{
 	public:
 		// CONSTRUCTORS / DESTRUCTORS
 		Fixed(void);
@@ -54,10 +57,10 @@ class Fixed {
 		float	toFloat(void) const;
 
 		// MIN / MAX
-		static Fixed	min(Fixed &a, Fixed &b);
-		static Fixed	min(const Fixed &a, const Fixed &b);
-		static Fixed	max(Fixed &a, Fixed &b);
-		static Fixed	max(const Fixed &a, const Fixed &b);
+		static Fixed		&min(Fixed &a, Fixed &b);
+		const static Fixed	&min(const Fixed &a, const Fixed &b);
+		static Fixed		&max(Fixed &a, Fixed &b);
+		const static Fixed	&max(const Fixed &a, const Fixed &b);
 
 	private:
 		int					_raw;
@@ -65,3 +68,5 @@ class Fixed {
 };
 
 std::ostream	&operator<<(std::ostream &output_stream, const Fixed &rhs);
+
+#endif

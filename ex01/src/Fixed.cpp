@@ -6,7 +6,7 @@
 /*   By: jleroux <jleroux@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 15:27:15 by jleroux           #+#    #+#             */
-/*   Updated: 2023/02/06 16:43:40 by jleroux          ###   ########.fr       */
+/*   Updated: 2023/02/15 14:05:02 by jleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ Fixed::Fixed(const int nbr) : _raw(nbr << this->_bits)
 }
 
 // Float constructor
-Fixed::Fixed(const float nbr) : _raw((int)(roundf(nbr * (1 << this->_bits))))
+Fixed::Fixed(const float nbr) : _raw(int(roundf(nbr * (1 << this->_bits))))
 {
 	std::cout << "Float constructor called" << std::endl;
 }
@@ -50,30 +50,37 @@ Fixed	&Fixed::operator=(const Fixed &rhs)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &rhs)
-		this->_raw = rhs.getRawBits();
-	return (*this);
-}
-
-// Insertion operator
-std::ostream	&operator<<(std::ostream &output_stream, const Fixed &rhs)
-{
-	output_stream << rhs.toFloat();
-	return (output_stream);
+		this->setRawBits(rhs.getRawBits());
+	return *this;
 }
 
 // Getter
 int	Fixed::getRawBits(void) const
 {
 	//std::cout << "getRawBits member function called" << std::endl;
-	return (this->_raw);
+	return this->_raw;
+}
+
+// Setter
+void	Fixed::setRawBits(const int raw)
+{
+	//std::cout << "setRawBits member function called" << std::endl;
+	this->_raw = raw;
 }
 
 int	Fixed::toInt(void) const
 {
-	return (this->_raw >> this->_bits);
+	return this->_raw >> this->_bits;
 }
 
 float	Fixed::toFloat(void) const
 {
-	return ((float)this->_raw / (float)(1 << this->_bits));
+	return float(this->_raw) / float(1 << this->_bits);
+}
+
+// Insertion operator
+std::ostream	&operator<<(std::ostream &output_stream, const Fixed &rhs)
+{
+	output_stream << rhs.toFloat();
+	return output_stream;
 }

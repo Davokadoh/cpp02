@@ -6,7 +6,7 @@
 /*   By: jleroux <jleroux@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:49:51 by jleroux           #+#    #+#             */
-/*   Updated: 2023/02/14 15:13:49 by jleroux          ###   ########.fr       */
+/*   Updated: 2023/02/14 17:55:22 by jleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ int main(void)
 		<< "A != A = " << (a != a) << std::endl
 		<< std::endl
 		<< "A + B = " << a + b << std::endl
+		<< "B + A = " << b + a << std::endl
 		<< "A - B = " << a - b << std::endl
 		<< "B - A = " << b - a << std::endl
+		<< "A - B == -(B - A): " << (a-b == Fixed(0) - (b-a)) << std::endl
 		<< "B / A = " << b / a << std::endl
 		<< "A / B = " << a / b << std::endl
 		<< "0 / B = " << Fixed(0) / b << std::endl
